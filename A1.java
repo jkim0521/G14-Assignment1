@@ -1,4 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 
 /** 
  * COMP 2503 Winter 2023 Assignment 1 
@@ -16,6 +20,8 @@ public class A1 {
 			{ "blackwidow", "romanoff" }, { "hulk", "banner" }, { "blackpanther", "tchalla" }, { "thor", "odinson" },
 			{ "hawkeye", "barton" }, { "warmachine", "rhodes" }, { "spiderman", "parker" },
 			{ "wintersoldier", "barnes" } };
+	
+	private String avenger = avengerRoster[0][1];
 
 	private int topN = 4;
 	private int totalwordcount = 0;
@@ -29,6 +35,9 @@ public class A1 {
 	public void run() {
 		readInput();
 		printResults();
+		for(Avenger avenger : avengersArrayList) {
+			System.out.println(avenger.toString());
+		}
 	}
 
 	/**
@@ -45,13 +54,55 @@ public class A1 {
 				- Create a new avenger object with the corresponding alias and last name.
 				- if this avenger has already been mentioned, increase the frequency count for the object already in the list.
 				- if this avenger has not been mentioned before, add the newly created avenger to the list, remember to set the frequency.
-		*/ 
+		*/
+		
+//	    try {
+//	        File myObj = new File("A1Starter Code and Sample Input Output/input2.txt");
+//	        Scanner myReader = new Scanner(myObj);
+//	        while (myReader.hasNextLine()) {
+//	          String data = myReader.next().trim().toLowerCase().replaceAll("[',#.():\"0123456789_-]", "");
+//	          System.out.println(data);
+//	        }
+//	        myReader.close();
+//	      } catch (FileNotFoundException e) {
+//	        System.out.println("An error occurred.");
+//	        e.printStackTrace();
+//	      }
+//	}
+		
+		try {
+			File file = new File("A1Starter Code and Sample Input Output/input2.txt");
+			Scanner reader = new Scanner(file);
+			while (reader.hasNext()) {
+				String text = reader.next().trim().toLowerCase().replaceAll("[',#.!/():\"0123456789_-]", "");
+				if (text.isEmpty()) {
+					continue;
+				}
+				totalwordcount += 1;
+				for(String[] avengerName : avengerRoster) {
+					if(text.equals(avengerName[0]) || text.equals(avengerName[1])) {
+						Avenger avenger = new Avenger(avengerName[0],avengerName[1]);
+						avengersArrayList.add(avenger);
+						}
+					}
+				}
+			reader.close();
+		}catch (FileNotFoundException e) {
+				      System.out.println("An error occurred.");
+				      e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+	
+//	public void avenger
 
 	/**
 	 * print the results
 	 */
 	private void printResults() {
+		
 		System.out.println("Total number of words: " + totalwordcount);
 		System.out.println("Number of Avengers Mentioned: " + avengersArrayList.size());
 		System.out.println();
