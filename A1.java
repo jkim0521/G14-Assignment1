@@ -10,7 +10,7 @@ import java.util.Scanner;
  * This program must read a input stream and keeps track of the 
  * frequency at which an avenger is mentioned either by name or alias.
  *
- * @author Maryam Elahi
+ * @author Maryam Elahi (for skeleton), Shaina Anne Garrido, Joseph Kim, and Kevin Luo
  * @date Winter 2023
 */
 
@@ -30,6 +30,9 @@ public class A1 {
 		a1.run();
 	}
 
+	/**
+	 * This calls the readInput and printResults method
+	 */
 	public void run() {
 		readInput();
 		printResults();
@@ -89,7 +92,7 @@ public class A1 {
 //	public void avenger
 
 	/**
-	 * print the results
+	 * print the results of the list and the order of the Avengers
 	 */
 	private void printResults() {
 		
