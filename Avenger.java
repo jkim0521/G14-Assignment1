@@ -31,20 +31,20 @@ public class Avenger implements Comparable <Avenger>{
 		return frequency;
 	}
 
-	public void setFrequency(int frequency) {
-		this.frequency = frequency;
+	public void increaseFrequency() {
+		this.frequency = frequency++;
 	}
 	
 	@Override
 	public boolean equals(Object other) {
+		if(other == null) {
+			return false;
+		}
 		if(other == this) {
 			return true;
 		}
-		if(!(other instanceof Avenger)) {
-			return false;
-		}
 		Avenger a = (Avenger) other;
-		return (this.heroAlias == p.getID()) && (this.name.equals(p.getName()))
+		return this.heroName == a.getHeroName() && this.heroAlias.equals(a.getHeroAlias());
 	} 
 	
 	@Override
@@ -57,7 +57,7 @@ public class Avenger implements Comparable <Avenger>{
 	@Override
 	public int compareTo(Avenger o) {
 		// TODO Auto-generated method stub
-		return this;
+		return 0;
 	}
 
 }

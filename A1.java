@@ -21,8 +21,6 @@ public class A1 {
 			{ "hawkeye", "barton" }, { "warmachine", "rhodes" }, { "spiderman", "parker" },
 			{ "wintersoldier", "barnes" } };
 	
-	private String avenger = avengerRoster[0][1];
-
 	private int topN = 4;
 	private int totalwordcount = 0;
 	private ArrayList<Avenger> avengersArrayList = new ArrayList<>();
@@ -35,9 +33,6 @@ public class A1 {
 	public void run() {
 		readInput();
 		printResults();
-		for(Avenger avenger : avengersArrayList) {
-			System.out.println(avenger.toString());
-		}
 	}
 
 	/**
@@ -70,9 +65,8 @@ public class A1 {
 //	      }
 //	}
 		
-		try {
-			File file = new File("A1Starter Code and Sample Input Output/input2.txt");
-			Scanner reader = new Scanner(file);
+			// File file = new File("A1Starter Code and Sample Input Output/input2.txt");
+			Scanner reader = new Scanner(System.in);
 			while (reader.hasNext()) {
 				String text = reader.next().trim().toLowerCase().replaceAll("[',#.!/():\"0123456789_-]", "");
 				if (text.isEmpty()) {
@@ -81,21 +75,17 @@ public class A1 {
 				totalwordcount += 1;
 				for(String[] avengerName : avengerRoster) {
 					if(text.equals(avengerName[0]) || text.equals(avengerName[1])) {
-						Avenger avenger = new Avenger(avengerName[0],avengerName[1]);
-						avengersArrayList.add(avenger);
+						Avenger currentAvenger = new Avenger(avengerName[0],avengerName[1]);
+						avengersArrayList.add(currentAvenger);
+						for(Avenger avenger:avengersArrayList) {
+							System.out.println(avenger.equals(currentAvenger));
+							}
 						}
 					}
 				}
 			reader.close();
-		}catch (FileNotFoundException e) {
-				      System.out.println("An error occurred.");
-				      e.printStackTrace();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
-	
+
 //	public void avenger
 
 	/**
@@ -110,6 +100,9 @@ public class A1 {
 		System.out.println("All avengers in the order they appeared in the input stream:");
 		// Todo: Print the list of avengers in the order they appeared in the input
 		// Make sure you follow the formatting example in the sample output
+		for(Avenger avenger : avengersArrayList) {
+			System.out.println(avenger.toString());
+		}
 		System.out.println();
 		
 		System.out.println("Top " + topN + " most popular avengers:");
